@@ -1,0 +1,71 @@
+# opcode, format, binary_opcode, rs, rt, rd, shamt, funct, address/imm, pseudo, op_size
+# if it is r-format, r0, r1, r2 correspond to possible registers in original r-format assembly instruction
+# if it is i-format, it will have r0, r1 and address/imm to record
+#                    address is either real or divided( by 4)
+#                    imm is real
+# if it is j-format, it will have r0 and address/imm to record
+<instruction>
+add,r,000000,$r1,$r2,$r0,00000,100000,None,false,4
+sub,r,000000,$r1,$r2,$r0,00000,100010,None,false,4
+lw,i,100011,$r1,$r0,None,None,None,imm,false,4
+sw,i,101011,$r1,$r0,None,None,None,imm,false,4
+and,r,000000,$r1,$r2,$r0,00000,100100,None,false,4
+or,r,000000,$r1,$r2,$r0,00000,100101,None,false,4
+nor,r,000000,$r1,$r2,$r0,00000,100111,None,false,4
+xor,r,000000,$r1,$r2,$r0,00000,100110,None,false,4
+slt,r,000000,$r1,$r2,$r0,00000,101010,None,false,4
+slti,i,001010,$r1,$r0,None,None,None,imm,false,4
+addi,i,001100,$r1,$r0,None,None,None,imm,false,4
+ori,i,001101,$r1,$r0,None,None,None,imm,false,4
+lui,i,001111,00000,$r0,None,None,None,imm,false,4
+xori,i,001110,$r1,$r0,None,None,None,imm,false,4
+sll,r,000000,00000,$r1,$r0,$r2,000000,None,false,4
+srl,r,000000,00000,$r1,$r0,$r2,000010,None,false,4
+sra,r,000000,00000,$r1,$r0,$r2,000011,None,false,4
+srav,r,000000,$r2,$r1,$r0,00000,000100,None,false,4
+sllv,r,000000,$r2,$r1,$r0,00000,000100,None,false,4
+srlv,r,000000,$r2,$r1,$r0,00000,000110,None,false,4
+beq,i,000100,$r0,$r1,None,None,None,divided,false,4
+bne,i,000101,$r0,$r1,None,None,None,divided,false,4
+slt,r,000000,$r1,$r2,$r0,00000,101010,None,false,4
+j,j,000010,None,None,None,None,None,divided,false,4
+jr,r,000000,$r0,00000,00000,00000,001000,None,false,4
+jalr,r,000000,$r0,00000,$r1,00000,001001,None,false,4
+jal,j,000011,None,None,None,None,None,divided,false,4
+eret,r,010000,10000,00000,00000,00000,01100,None,false,4
+<done>
+#  the following is for registers
+# $register_name, binary representation(in five bits)
+<register>
+$zero,00000
+$at,00001
+$v0,00010
+$v1,00011
+$a0,00100
+$a1,00101
+$a2,00110
+$a3,00111
+$t0,01000
+$t1,01001
+$t2,01010
+$t3,01011
+$t4,01100
+$t5,01101
+$t6,01110
+$t7,01111
+$s0,10000
+$s1,10001
+$s2,10010
+$s3,10011
+$s4,10100
+$s5,10101
+$s6,10110
+$s7,10111
+$t8,11000
+$t9,11001
+$gp,11100
+$sp,11101
+$fp,11110
+$ra,11111
+<done>
+# the following is for pseudo instructions
