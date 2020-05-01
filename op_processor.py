@@ -42,7 +42,7 @@ def process_r(OPTAB, operands, dict_op):
     rd = get_register_field(OPTAB,operands, dict_op, 'rd')
     # shamt
     if(dict_op['shamt'].find('$') != -1):
-        shamt = " " + sign_extend(int(operands[get_operands_index(dict_op['shamt'])]), 5)
+        shamt = " " + sign_extend(base_convert(operands[get_operands_index(dict_op['shamt'])]), 5)
     else:
         shamt = " " +dict_op["shamt"]
     # funct
