@@ -2,7 +2,11 @@ from util import *
 
 def get_register_field(OPTAB, operands, dict_op, field):
     if(dict_op[field].find('$') != -1):
-        r = " " + OPTAB[operands[get_operands_index(dict_op[field])]]
+        index = get_operands_index(dict_op[field])
+        if(index < len(operands)):
+            r = " " + OPTAB[operands[index]]
+        else:
+            r = " 11111" # deal with instruction **`jalr`** with default value
     else:
         r = " " + dict_op[field];
     return r
