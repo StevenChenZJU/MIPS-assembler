@@ -15,7 +15,7 @@ nor,r,000000,$r1,$r2,$r0,00000,100111,None,false,4
 xor,r,000000,$r1,$r2,$r0,00000,100110,None,false,4
 slt,r,000000,$r1,$r2,$r0,00000,101010,None,false,4
 slti,i,001010,$r1,$r0,None,None,None,imm,false,4
-addi,i,001100,$r1,$r0,None,None,None,imm,false,4
+addi,i,001000,$r1,$r0,None,None,None,imm,false,4
 ori,i,001101,$r1,$r0,None,None,None,imm,false,4
 andi,i,001100,$r1,$r0,None,None,None,imm,false,4
 lui,i,001111,00000,$r0,None,None,None,imm,false,4
