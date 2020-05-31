@@ -89,7 +89,7 @@ def process_i(OPTAB, operands, dict_op, SYMTAB, address, unresolved):
     rt = get_register_field(OPTAB, operands, dict_op, 'rt')
     imm_field = operands[len(operands)-1].strip()
     
-    res_obj = re.match(r'^[0-9]+|0[0-9]+|0x[0-9a-f]+$', imm_field)
+    res_obj = re.match(r'^-?[0-9]+|0[0-9]+|0x[0-9a-f]+$', imm_field)
     if(dict_op["address"] == "imm"):
         imm = None
         if(res_obj is None):
@@ -132,7 +132,7 @@ def process_op(dict_op, operands, OPTAB, SYMTAB, address):
 
     bits += dict_op["op"]
     op_format = dict_op["format"]
-    if(op_format is 'r'):
+    if(op_format == 'r'):
         bits += process_r(OPTAB, operands, dict_op)
     elif(op_format == 'j'):
         bits += process_j(OPTAB, operands, dict_op, SYMTAB, address, unresolved)

@@ -125,9 +125,9 @@ def base_convert(str):
     int_res = None
     if(config_constant == "numberprefix"):
         str = str.strip()
-        binary_obj = re.match(r'^[0-1]+$',str)
-        hex_obj = re.match(r'0x[0-9A-Fa-f]+$', str)
-        decimal_obj = re.match(r'[0-9]+',str)
+        binary_obj = re.match(r'^-?b[0-1]+$',str)
+        hex_obj = re.match(r'-?0x[0-9A-Fa-f]+$', str)
+        decimal_obj = re.match(r'-?[0-9]+',str)
         if(binary_obj != None):
             int_res = int(str,2)
         elif(hex_obj != None):

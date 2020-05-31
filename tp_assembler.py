@@ -140,6 +140,8 @@ if __name__ == "__main__":
         lines = fp.readlines()
         inter_code, SYMTAB, text_size, data_size,data_segment=  first_pass(lines, OPTAB)
     
+    if(config_type == "Debug"):
+        print(SYMTAB)
     header["text_size"] = text_size
     header["data_size"] = data_size
 
@@ -151,15 +153,16 @@ if __name__ == "__main__":
 
     text_segment, relocation_information, symbol_table = second_pass(inter_code, SYMTAB, OPTAB)
 
-    if config_type == "Debug":
+    if(config_type == "Debug"):
         print(header)
         print(text_segment)
         print(relocation_infomation)
         print(symbol_table)
-    elif config_type == "Release":
+    elif(config_type == "Release"):
         hex_text = process_bit(text_segment)
         output_coe(header, hex_text)
     else:
         raise ValueError("Invalid Configuration!")
 
-    print("Successfully Compile into " + header["name"] + ".coe")
+    if(config_type == "Release"):
+        print("Successfully Compile into " + header["name"] + ".coe")
