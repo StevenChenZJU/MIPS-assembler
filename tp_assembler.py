@@ -39,12 +39,14 @@ def first_pass(lines, OPTAB):
             continue
 
         # have instruction in this line
-        
+        line = line.replace('\t', " ")
         components = line.split(" ", 1)
         opcode = components[0]
         operands = components[1].lstrip()
         dict_op = OPTAB.get(opcode)
         if(dict_op is None):
+            print(line)
+            print(components)
             raise ValueError("Invalid opcode %s!"%opcode)
         else:
             
