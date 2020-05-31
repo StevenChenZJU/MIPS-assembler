@@ -1,5 +1,5 @@
 from util import *
-
+from assembler_config import *
 def get_register_field(OPTAB, operands, dict_op, field):
     if(dict_op[field].find('$') != -1):
         index = get_operands_index(dict_op[field])
@@ -132,6 +132,8 @@ def process_op(dict_op, operands, OPTAB, SYMTAB, address):
 
     bits += dict_op["op"]
     op_format = dict_op["format"]
+    if(config_type == "Debug"):
+        print(operands)
     if(op_format == 'r'):
         bits += process_r(OPTAB, operands, dict_op)
     elif(op_format == 'j'):
