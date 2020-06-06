@@ -42,35 +42,38 @@ def first_pass(lines, OPTAB):
         line = line.replace('\t', " ")
         components = line.split(" ", 1)
         opcode = components[0]
-        operands = components[1].lstrip()
+        if(len(components) >= 2):
+            operands = components[1].lstrip()
+        else: # eret
+            operands = None
         dict_op = OPTAB.get(opcode)
         if(dict_op is None):
             print(line)
             print(components)
             raise ValueError("Invalid opcode %s!"%opcode)
         else:
-            
-            list_operands = operands.split(",")
+            if(operands is not None):
+                list_operands = operands.split(",")
 
-            if(dict_op["format"] == 'i' and list_operands[1].find('(') != -1):
-                # num($reg)
-                to_process = list_operands[1].strip()
-                index = to_process.find('(')
-                rindex = to_process.find(')')
-                list_operands.pop()
-                list_operands.append(to_process[index+1:rindex].strip()) 
-                 # put the register in first
-                list_operands.append(to_process[:index])
-                #print(list_operands)
-                
-            #if(not is_legal("operands",list_operands)):
-             #   raise ValueError("Invalid operands!" + str(list_operands))
-            for i in range(len(list_operands)):
-                 list_operands[i] = list_operands[i].strip()
-            inter_code.append({ "address":LOCCTR,
-                                "opcode":opcode,
-                                "operands":list_operands,
-                                "dict_op":dict_op})
+                if(dict_op["format"] == 'i' and list_operands[1].find('(') != -1):
+                    # num($reg)
+                    to_process = list_operands[1].strip()
+                    index = to_process.find('(')
+                    rindex = to_process.find(')')
+                    list_operands.pop()
+                    list_operands.append(to_process[index+1:rindex].strip()) 
+                    # put the register in first
+                    list_operands.append(to_process[:index])
+                    #print(list_operands)
+                    
+                #if(not is_legal("operands",list_operands)):
+                #   raise ValueError("Invalid operands!" + str(list_operands))
+                for i in range(len(list_operands)):
+                    list_operands[i] = list_operands[i].strip()
+                inter_code.append({ "address":LOCCTR,
+                                    "opcode":opcode,
+                                    "operands":list_operands,
+                                    "dict_op":dict_op})
             # in case it is pseudo code
             # add correct length
             size_code = int(dict_op["op_size"])
