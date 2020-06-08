@@ -52,6 +52,7 @@ def first_pass(lines, OPTAB):
             print(components)
             raise ValueError("Invalid opcode %s!"%opcode)
         else:
+            list_operands = None
             if(operands is not None):
                 list_operands = operands.split(",")
 
@@ -70,10 +71,11 @@ def first_pass(lines, OPTAB):
                 #   raise ValueError("Invalid operands!" + str(list_operands))
                 for i in range(len(list_operands)):
                     list_operands[i] = list_operands[i].strip()
-                inter_code.append({ "address":LOCCTR,
-                                    "opcode":opcode,
-                                    "operands":list_operands,
-                                    "dict_op":dict_op})
+                    
+            inter_code.append({ "address":LOCCTR,
+                                "opcode":opcode,
+                                "operands":list_operands,
+                                "dict_op":dict_op})
             # in case it is pseudo code
             # add correct length
             size_code = int(dict_op["op_size"])

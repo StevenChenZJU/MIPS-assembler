@@ -33,7 +33,7 @@ j,j,000010,None,None,None,None,None,divided,false,4
 jr,r,000000,$r0,00000,00000,00000,001000,None,false,4
 jalr,r,000000,$r0,00000,$r1,00000,001001,None,false,4
 jal,j,000011,None,None,None,None,None,divided,false,4
-eret,r,010000,10000,00000,00000,00000,01100,None,false,4
+eret,r,010000,10000,00000,00000,00000,011000,None,false,4
 <done>
 #  the following is for registers
 # $register_name, binary representation(in five bits)
